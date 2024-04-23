@@ -1,0 +1,27 @@
+name: tienda-express
+
+services:
+  tienda-express-postgresql:
+    image: postgres:latest
+    container_name: tienda-express-postgresql
+    environment:
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "TiendaExpress123!"
+    ports:
+      - 54320:5432
+    restart: on-failure
+    volumes:
+      - type: volume
+        source: tienda-express-postgresql-data-volume
+        target: /var/lib/postgresql/data
+
+  tienda-express-adminer:
+    image: adminer
+    container_name: tienda-express-adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  tienda-express-postgresql-data-volume:
+    driver: local
