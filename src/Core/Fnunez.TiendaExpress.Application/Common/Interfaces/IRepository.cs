@@ -21,6 +21,12 @@ public interface IRepository<T> where T : BaseEntity
     Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool disabledTracking = true, string[]? includedProperties = null, CancellationToken cancellationToken = default);
     IEnumerable<T> GetList(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, int? skip = null, int? take = null, bool disabledTracking = true, string[]? includedProperties = null);
     Task<IEnumerable<T>> GetListAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, int? skip = null, int? take = null, bool disabledTracking = true, string[]? includedProperties = null, CancellationToken cancellationToken = default);
+    void HardDelete(T entity);
+    Task HardDeleteAsync(T entity, CancellationToken cancellationToken = default);
+    void HardDeleteById(string? id);
+    Task HardDeleteByIdAsync(string? id, CancellationToken cancellationToken = default);
+    void HardDeleteRange(IEnumerable<T> entities);
+    Task HardDeleteRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
     void Insert(T entity);
     Task InsertAsync(T entity, CancellationToken cancellationToken = default);
     void InsertRange(IEnumerable<T> entities);
