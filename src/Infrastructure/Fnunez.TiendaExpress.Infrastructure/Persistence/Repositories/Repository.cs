@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using System.Reflection;
 using Fnunez.TiendaExpress.Application.Common.Interfaces;
 using Fnunez.TiendaExpress.Domain.Common;
 using Fnunez.TiendaExpress.Infrastructure.Persistence.Contexts;
@@ -6,8 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fnunez.TiendaExpress.Infrastructure.Persistence.Repositories;
 
-public class Repository<T> : IRepository<T> where T : BaseEntity
+public class Repository<T> : IRepository<T> where T : class, IAggregateRoot
 {
+    private const string IsActive = "IsActive";
     private readonly ApplicationDbContext _dbContext;
 
     public Repository(ApplicationDbContext dbContext)
@@ -39,7 +41,9 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
 
     public void Delete(T entity)
     {
-        _dbContext.Set<T>().Remove(entity);
+        TrySetProperty(entity, IsActive, false);
+
+        _dbContext.Set<T>().Update(entity);
         _dbContext.SaveChanges();
     }
 
@@ -47,7 +51,9 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         T entity,
         CancellationToken cancellationToken = default)
     {
-        _dbContext.Set<T>().Remove(entity);
+        TrySetProperty(entity, IsActive, false);
+
+        _dbContext.Set<T>().Update(entity);
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
@@ -57,6 +63,8 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
 
         if (entity is null)
             throw new NullReferenceException($"{typeof(T).Name} not found with id: {id}.");
+
+        TrySetProperty(entity, IsActive, false);
 
         Delete(entity);
     }
@@ -70,13 +78,15 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         if (entity is null)
             throw new NullReferenceException($"{typeof(T).Name} not found with id: {id}.");
 
+        TrySetProperty(entity, IsActive, false);
+
         await DeleteAsync(entity, cancellationToken);
     }
 
     public void DeleteRange(IEnumerable<T> entities)
     {
         foreach (var entity in entities)
-            entity.IsActive = false;
+            TrySetProperty(entity, IsActive, false);
 
         UpdateRange(entities);
     }
@@ -86,7 +96,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         CancellationToken cancellationToken = default)
     {
         foreach (var entity in entities)
-            entity.IsActive = false;
+            TrySetProperty(entity, IsActive, false);
 
         await UpdateRangeAsync(entities, cancellationToken);
     }
@@ -164,6 +174,56 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         var query = GetQuery(filter, orderBy, skip, take, disabledTracking, includedProperties);
 
         return await query.ToListAsync(cancellationToken);
+    }
+
+    public void HardDelete(T entity)
+    {
+        _dbContext.Set<T>().Remove(entity);
+        _dbContext.SaveChanges();
+    }
+
+    public async Task HardDeleteAsync(
+        T entity,
+        CancellationToken cancellationToken = default)
+    {
+        _dbContext.Set<T>().Remove(entity);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public void HardDeleteById(string? id)
+    {
+        T? entity = GetById(id);
+
+        if (entity is null)
+            throw new NullReferenceException($"{typeof(T).Name} not found with id: {id}.");
+
+        HardDelete(entity);
+    }
+
+    public async Task HardDeleteByIdAsync(
+        string? id,
+        CancellationToken cancellationToken = default)
+    {
+        T? entity = await GetByIdAsync(id, cancellationToken);
+
+        if (entity is null)
+            throw new NullReferenceException($"{typeof(T).Name} not found with id: {id}.");
+
+        await HardDeleteAsync(entity, cancellationToken);
+    }
+
+    public void HardDeleteRange(IEnumerable<T> entities)
+    {
+        _dbContext.Set<T>().RemoveRange(entities);
+        _dbContext.SaveChanges();
+    }
+
+    public async Task HardDeleteRangeAsync(
+        IEnumerable<T> entities,
+        CancellationToken cancellationToken = default)
+    {
+        _dbContext.Set<T>().RemoveRange(entities);
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
     public void Insert(T entity)
@@ -249,5 +309,15 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
             query = query.AsNoTracking();
 
         return query;
+    }
+
+    private static void TrySetProperty(object obj, string property, object value)
+    {
+        var foundProperty = obj
+            .GetType()
+            .GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
+
+        if (foundProperty != null && foundProperty.CanWrite)
+            foundProperty.SetValue(obj, value, null);
     }
 }
