@@ -3,7 +3,7 @@ using Fnunez.TiendaExpress.Domain.Common;
 
 namespace Fnunez.TiendaExpress.Application.Common.Interfaces;
 
-public interface IRepository<T> where T : BaseEntity
+public interface IRepository<T> where T : class, IAggregateRoot
 {
     long Count(Expression<Func<T, bool>>? filter = null);
     Task<long> CountAsync(Expression<Func<T, bool>>? filter = null, CancellationToken cancellationToken = default);
