@@ -1,4 +1,12 @@
+using Fnunez.TiendaExpress.Application.Common.Interfaces;
+using Fnunez.TiendaExpress.Domain.BasketAggregate;
+using Fnunez.TiendaExpress.Domain.BrandAggregate;
+using Fnunez.TiendaExpress.Domain.CategoryAggregate;
+using Fnunez.TiendaExpress.Domain.CustomerAggregate;
+using Fnunez.TiendaExpress.Domain.OrderAggregate;
+using Fnunez.TiendaExpress.Domain.ProductAggregate;
 using Fnunez.TiendaExpress.Infrastructure.Persistence.Contexts;
+using Fnunez.TiendaExpress.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -31,7 +39,17 @@ public static class ConfigureServices
 
         services.AddScoped<ApplicationDbContextSeeder>();
 
-        // services.AddScoped<IRepository<MyEntity>, Repository<MyEntity>>();
+        services.AddScoped<IRepository<Basket>, Repository<Basket>>();
+
+        services.AddScoped<IRepository<Brand>, Repository<Brand>>();
+
+        services.AddScoped<IRepository<Category>, Repository<Category>>();
+
+        services.AddScoped<IRepository<Customer>, Repository<Customer>>();
+
+        services.AddScoped<IRepository<Order>, Repository<Order>>();
+
+        services.AddScoped<IRepository<Product>, Repository<Product>>();
 
         return services;
     }
