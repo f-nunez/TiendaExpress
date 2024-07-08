@@ -1,0 +1,1 @@
+export { NotFoundPageModule } from './not-found-page.module';

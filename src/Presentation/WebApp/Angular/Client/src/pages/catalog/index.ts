@@ -1,0 +1,1 @@
+export { CatalogPageModule } from './catalog-page.module';

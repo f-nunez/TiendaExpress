@@ -1,0 +1,1 @@
+export { LayoutHeaderModule } from './layout-header.module'

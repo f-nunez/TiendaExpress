@@ -1,0 +1,1 @@
+export { CustomerRolePageModule } from './customer-role-page.module';

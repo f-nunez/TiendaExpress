@@ -1,0 +1,49 @@
+<form
+    class="row g-3 needs-validation"
+    [class]="isSubmitted ? 'was-validated' : ''"
+    [formGroup]="form"
+    (ngSubmit)="onSubmitLogin()">
+    <div class="col-12">
+        <label class="form-label" for="username">Username</label>
+
+        <input
+            autocomplete="off"
+            class="form-control"
+            formControlName="username"
+            id="username"
+            maxlength="50"
+            required
+            [ngClass]="{'is-invalid': isInvalidUsername}"
+        />
+    
+        <div
+            class="invalid-feedback"
+            *ngIf="isInvalidUsername">
+            Username is required
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label" for="password">Password</label>
+
+        <input
+            autocomplete="off"
+            class="form-control"
+            formControlName="password"
+            id="password"
+            maxlength="50"
+            required
+            [ngClass]="{'is-invalid': isInvalidPassword}"
+        />
+    
+        <div
+            class="invalid-feedback"
+            *ngIf="isInvalidPassword">
+            Password is required
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+</form>

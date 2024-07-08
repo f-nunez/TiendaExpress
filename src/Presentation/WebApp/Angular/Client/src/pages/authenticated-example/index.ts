@@ -1,0 +1,1 @@
+export { AuthenticatedExamplePageModule } from './authenticated-example-page.module';
