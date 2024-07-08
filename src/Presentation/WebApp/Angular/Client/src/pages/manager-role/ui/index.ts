@@ -1,0 +1,1 @@
+export { ManagerRolePageComponent } from './manager-role-page.component';

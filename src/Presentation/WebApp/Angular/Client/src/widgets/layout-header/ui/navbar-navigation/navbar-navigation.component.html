@@ -1,0 +1,39 @@
+<li class="nav-item col-6 col-lg-auto">
+    <a class="nav-link py-2 px-0 px-lg-2" routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Home</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto">
+    <a class="nav-link py-2 px-0 px-lg-2" routerLink="catalog" routerLinkActive="active" ariaCurrentWhenActive="page">Catalog</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[]">
+    <a class="nav-link py-2 px-0 px-lg-2" routerLink="authenticated-example" routerLinkActive="active" ariaCurrentWhenActive="page">Authenticated Example</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer]">
+    <a class="nav-link py-2 px-0 px-lg-2" routerLink="customer-role" routerLinkActive="active" ariaCurrentWhenActive="page">Customer Role</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" routerLink="manager-role" routerLinkActive="active" ariaCurrentWhenActive="page">Manager Role</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer, role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener">Docs</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer, role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" href="https://getbootstrap.com/docs/5.3/examples/" target="_blank" rel="noopener">Examples</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer, role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" href="https://icons.getbootstrap.com/" target="_blank" rel="noopener">Icons</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer, role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" href="https://themes.getbootstrap.com/" target="_blank" rel="noopener">Themes</a>
+</li>
+
+<li class="nav-item col-6 col-lg-auto" *rbac="[role.Customer, role.Manager]">
+    <a class="nav-link py-2 px-0 px-lg-2" href="https://blog.getbootstrap.com/" target="_blank" rel="noopener">Blog</a>
+</li>

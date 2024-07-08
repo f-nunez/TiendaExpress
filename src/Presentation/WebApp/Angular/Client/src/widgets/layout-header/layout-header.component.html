@@ -1,0 +1,56 @@
+<header class='navbar navbar-expand-lg sticky-top bd-navbar'>
+    <nav class='container-xxl bd-gutter flex-wrap flex-lg-nowwrap' aria-label='Main navigation'>
+
+        <div class='d-lg-none navbar-brand-filler'></div>
+
+        <navbar-brand></navbar-brand>
+
+        <div class="d-flex">
+            <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
+                <i class="bi-three-dots"></i>
+            </button>
+        </div>
+
+        <div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-scroll="true">
+
+            <div class="offcanvas-header px-4 pb-0">
+                <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">Bootstrap</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+            </div>
+
+            <div class="offcanvas-body p-4 pt-0 p-lg-0">
+
+                <hr class="d-lg-none text-white-50" />
+
+                <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
+                    <navbar-navigation></navbar-navigation>
+                </ul>
+
+                <hr class="d-lg-none text-white-50" />
+
+                <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+
+                    <navbar-social-links></navbar-social-links>
+
+                    <navbar-divider></navbar-divider>
+
+                    <navbar-dummy-dropdown></navbar-dummy-dropdown>
+
+                    <navbar-divider></navbar-divider>
+
+                    <navbar-toggle-theme></navbar-toggle-theme>
+
+                    <navbar-divider></navbar-divider>
+
+                    <navbar-login-menu *ngIf="!(isAuthorized$ | async)"></navbar-login-menu>
+
+                    <navbar-profile-menu *ngIf="(isAuthorized$ | async)"></navbar-profile-menu>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+</header>

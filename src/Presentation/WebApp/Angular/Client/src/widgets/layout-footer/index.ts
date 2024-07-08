@@ -1,0 +1,1 @@
+export { LayoutFooterComponent } from './ui';

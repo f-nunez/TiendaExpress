@@ -1,0 +1,1 @@
+export { SignOutModule } from './sign-out.module';

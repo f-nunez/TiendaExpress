@@ -1,0 +1,1 @@
+export { AuthenticatedExamplePageComponent } from './authenticated-example-page.component';

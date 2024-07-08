@@ -1,0 +1,1 @@
+export { CustomerRolePageComponent } from './customer-role-page.component';

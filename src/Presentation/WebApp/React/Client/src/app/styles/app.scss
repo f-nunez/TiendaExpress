@@ -1,0 +1,20 @@
+// Import Bootstrap and its default variables
+$bootstrap-icons-font-src: url("../../../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"), url("../../../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff?") format("woff") !default;
+@import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+// Import Bootstrap and its default variables
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+// Load Bootstrap variables and mixins
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/grid";
+
+// Load custom components
+@import "layout/variables";
+@import "layout/root";
+@import "layout/navbar";
+@import "layout/content";
+@import "layout/layout";
+@import "layout/footer";

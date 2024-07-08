@@ -1,0 +1,32 @@
+<li class="nav-item dropdown">
+
+    <button class="btn btn-link nav-link py-1 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+        id="bd-login"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-label="Profile Menu">
+
+        <a href="#" class="d-block link-body-emphasis text-decoration-none">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+        </a>
+
+        <span class="d-lg-none ms-2" id="bd-login-text">Profile menu</span>
+
+    </button>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-login-text">
+
+        <li><h6 class="dropdown-header">Welcome, {{(username$ | async)}}</h6></li>
+
+        <li><a class="dropdown-item">Settings</a></li>
+
+        <li><a class="dropdown-item">Profile</a></li>
+
+        <li><hr class="dropdown-divider" /></li>
+
+        <li><sign-out-dropdown></sign-out-dropdown></li>
+    </ul>
+
+</li>

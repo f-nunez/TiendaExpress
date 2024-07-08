@@ -1,0 +1,36 @@
+/*
+    Angular components by default are styled as display: inline.
+    So we need to set them as display: contents.
+*/
+
+navbar-brand {
+    display: contents;
+}
+
+navbar-divider {
+    display: contents;
+}
+
+navbar-dummy-dropdown {
+    display: contents;
+}
+
+navbar-login-menu {
+    display: contents;
+}
+
+navbar-navigation {
+    display: contents;
+}
+
+navbar-profile-menu {
+    display: contents;
+}
+
+navbar-social-links {
+    display: contents;
+}
+
+navbar-toggle-theme {
+    display: contents;
+}

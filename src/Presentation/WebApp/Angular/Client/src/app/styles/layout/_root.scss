@@ -1,0 +1,12 @@
+:root,
+[data-bs-theme="light"] {
+    --bd-purple: #{$bd-purple};
+    --bd-violet: #{$bd-violet};
+    --bd-violet-rgb: #{to-rgb(tint-color($bd-violet, 20%))};
+}
+
+@include color-mode(dark, true) {
+    --bd-purple: #{$bd-purple};
+    --bd-violet: #{$bd-violet};
+    --bd-violet-rgb: #{to-rgb(shade-color($bd-violet, 20%))};
+}

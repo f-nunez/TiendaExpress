@@ -1,0 +1,1 @@
+export { ManagerRolePageModule } from './manager-role-page.module';
