@@ -1,0 +1,1 @@
+export { NavbarBrand } from './navbar-brand';

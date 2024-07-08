@@ -1,0 +1,1 @@
+export { ManagerRolePage } from './ui/manager-role-page';

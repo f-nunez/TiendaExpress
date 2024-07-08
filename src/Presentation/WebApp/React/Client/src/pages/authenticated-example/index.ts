@@ -1,0 +1,1 @@
+export { AuthenticatedExamplePage } from './ui/authenticated-example-page';

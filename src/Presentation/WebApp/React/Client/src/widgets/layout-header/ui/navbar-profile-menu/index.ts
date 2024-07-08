@@ -1,0 +1,1 @@
+export { NavbarProfileMenu } from './navbar-profile-menu';

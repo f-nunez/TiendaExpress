@@ -1,0 +1,1 @@
+export { CustomerRolePage } from './ui/customer-role-page';
